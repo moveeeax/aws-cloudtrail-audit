@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "account_id": "111122223333",
+  "regions": ["eu-central-1", "eu-west-1", "us-east-1"],
+  "trails": [
+    {
+      "Name": "legacy-ireland-trail",
+      "TrailARN": "arn:aws:cloudtrail:eu-west-1:111122223333:trail/legacy-ireland-trail",
+      "HomeRegion": "eu-west-1",
+      "S3BucketName": "acme-legacy-logs",
+      "KmsKeyId": "arn:aws:kms:eu-west-1:111122223333:key/3c7d9e21-55aa-41b6-8d02-7e9f1a2b3c4d",
+      "CloudWatchLogsLogGroupArn": "arn:aws:logs:eu-west-1:111122223333:log-group:/aws/cloudtrail/legacy:*",
+      "IsMultiRegionTrail": false,
+      "IncludeGlobalServiceEvents": true,
+      "LogFileValidationEnabled": true,
+      "Status": {
+        "IsLogging": true,
+        "LatestDeliveryTime": "2026-10-18T09:02:44+00:00"
+      },
+      "EventSelectors": [
+        {
+          "ReadWriteType": "All",
+          "IncludeManagementEvents": true,
+          "DataResources": [
+            {"Type": "AWS::S3::Object", "Values": ["arn:aws:s3"]},
+            {"Type": "AWS::Lambda::Function", "Values": ["arn:aws:lambda"]}
+          ]
+        }
+      ]
+    }
+  ]
+}

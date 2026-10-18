@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "account_id": "444455556666",
+  "regions": ["eu-west-1", "us-east-1", "us-west-2"],
+  "trails": [
+    {
+      "Name": "bootstrap-trail",
+      "TrailARN": "arn:aws:cloudtrail:us-east-1:444455556666:trail/bootstrap-trail",
+      "HomeRegion": "us-east-1",
+      "S3BucketName": "bootstrap-trail-logs",
+      "IsMultiRegionTrail": true,
+      "IncludeGlobalServiceEvents": false,
+      "LogFileValidationEnabled": false,
+      "Status": {
+        "IsLogging": true,
+        "LatestDeliveryTime": "2026-10-18T08:55:00+00:00"
+      },
+      "EventSelectors": [
+        {
+          "ReadWriteType": "WriteOnly",
+          "IncludeManagementEvents": true,
+          "DataResources": []
+        }
+      ]
+    },
+    {
+      "Name": "paused-forensics-trail",
+      "TrailARN": "arn:aws:cloudtrail:us-west-2:444455556666:trail/paused-forensics-trail",
+      "HomeRegion": "us-west-2",
+      "S3BucketName": "forensics-trail-logs",
+      "KmsKeyId": "arn:aws:kms:us-west-2:444455556666:key/aa11bb22-cc33-dd44-ee55-ff6677889900",
+      "CloudWatchLogsLogGroupArn": "arn:aws:logs:us-west-2:444455556666:log-group:/aws/cloudtrail/forensics:*",
+      "IsMultiRegionTrail": true,
+      "IncludeGlobalServiceEvents": true,
+      "LogFileValidationEnabled": true,
+      "Status": {
+        "IsLogging": false,
+        "StopLoggingTime": "2026-07-04T02:13:51+00:00",
+        "LatestDeliveryTime": "2026-07-04T02:10:00+00:00"
+      },
+      "AdvancedEventSelectors": [
+        {
+          "Name": "Management events",
+          "FieldSelectors": [
+            {"Field": "eventCategory", "Equals": ["Management"]}
+          ]
+        },
+        {
+          "Name": "S3 object activity",
+          "FieldSelectors": [
+            {"Field": "eventCategory", "Equals": ["Data"]},
+            {"Field": "resources.type", "Equals": ["AWS::S3::Object"]}
+          ]
+        }
+      ]
+    }
+  ]
+}

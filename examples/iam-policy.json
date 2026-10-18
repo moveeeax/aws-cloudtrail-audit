@@ -1,0 +1,22 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "ReadCloudTrailConfiguration",
+      "Effect": "Allow",
+      "Action": [
+        "cloudtrail:DescribeTrails",
+        "cloudtrail:GetTrailStatus",
+        "cloudtrail:GetEventSelectors",
+        "cloudtrail:ListTrails"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "EnumerateEnabledRegions",
+      "Effect": "Allow",
+      "Action": ["ec2:DescribeRegions", "sts:GetCallerIdentity"],
+      "Resource": "*"
+    }
+  ]
+}

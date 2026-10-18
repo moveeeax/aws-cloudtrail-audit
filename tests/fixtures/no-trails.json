@@ -1,0 +1,6 @@
+{
+  "schema_version": 1,
+  "account_id": "777788889999",
+  "regions": ["eu-west-1", "us-east-1"],
+  "trails": []
+}

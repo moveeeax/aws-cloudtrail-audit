@@ -1,0 +1,41 @@
+# Nightly CloudTrail gate. Collection needs read-only CloudTrail access
+# (see examples/iam-policy.json); the job fails only on the rules that mean
+# the account is genuinely uninvestigable right now.
+name: cloudtrail-gate
+
+on:
+  schedule:
+    - cron: "17 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install git+https://github.com/moveeeax/aws-cloudtrail-audit@v0.1.0
+
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::111122223333:role/cloudtrail-auditor
+          aws-region: eu-west-1
+
+      - name: Audit
+        run: |
+          aws-cloudtrail-audit \
+            --dump-json trails.json \
+            --fail-on no-trail,logging-stopped,not-multi-region,no-global-events \
+            --ignore-trail legacy-import-trail
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cloudtrail-payload
+          path: trails.json
