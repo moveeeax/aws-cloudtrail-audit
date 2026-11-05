@@ -118,3 +118,7 @@ $ ruff check src tests && pytest
 ## License
 
 MIT
+
+---
+
+**Archived on 2026-11-05.** all nine rules map to existing Prowler checks / Security Hub CloudTrail.1-.5 controls; the only angles left are delivery health and org-trail awareness below. Build those or archive.
