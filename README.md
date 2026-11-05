@@ -1,7 +1,7 @@
 # aws-cloudtrail-audit
 
 [![ci](https://github.com/moveeeax/aws-cloudtrail-audit/actions/workflows/ci.yml/badge.svg)](https://github.com/moveeeax/aws-cloudtrail-audit/actions/workflows/ci.yml)
-[![python](https://img.shields.io/badge/python-3.11%20%7C%203.12-blue)](pyproject.toml)
+[![python](https://img.shields.io/badge/python-3.11%20%E2%80%93%203.15-blue)](pyproject.toml)
 [![license](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
 CloudTrail is the only witness to an incident, and it is configured exactly once —
